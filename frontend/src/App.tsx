@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-// Frontend Engineer: Tu - Main App Component
-// Screens: Home, Quiz, Result, Leaderboard, Admin
->>>>>>> f9e48d7d2c3938b60d853b591d2360dda5d83088
 import { useState, useEffect, useRef, useCallback } from 'react';
 import type { Question, Result, Stats, AnswerRecord, QuizPhase } from './types';
 import { apiFetch } from './lib/api';
