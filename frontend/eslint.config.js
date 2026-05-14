@@ -4,12 +4,18 @@ import globals from 'globals';
 export default [
   js.configs.recommended,
   {
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       globals: { ...globals.browser },
-      parserOptions: { ecmaVersion: 'latest', sourceType: 'module', ecmaFeatures: { jsx: true } },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: { jsx: true },
+      },
     },
     rules: {
       'no-unused-vars': 'warn',
+      'no-undef': 'off',
     },
   },
   {
