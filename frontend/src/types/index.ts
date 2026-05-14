@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// Frontend Engineer: Tu - TypeScript type definitions
+>>>>>>> f9e48d7d2c3938b60d853b591d2360dda5d83088
 export interface Question {
   id: string;
   text: string;

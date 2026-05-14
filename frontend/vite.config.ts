@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// Frontend Engineer: Tu - Vite configuration
+>>>>>>> f9e48d7d2c3938b60d853b591d2360dda5d83088
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vitest/config';
