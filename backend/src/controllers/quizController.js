@@ -5,7 +5,7 @@ export async function listQuestions(_req, res) {
     const supabase = getSupabaseAdmin();
     const { data, error } = await supabase
       .from('questions')
-      .select('id, text, options, category, difficulty, created_at')
+      .select('id, text, options, correct_index, category, difficulty, created_at')
       .order('created_at', { ascending: false });
 
     if (error) throw error;
