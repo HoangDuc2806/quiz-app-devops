@@ -99,7 +99,7 @@ function QuizScreen({ questions, playerName, onFinish }:
   };
 
   const next = () => {
-    const record: AnswerRecord = { question_id: q.id, selected: selected!, correct: selected === q.correct_index };
+    const record: AnswerRecord = { question_id: q.id, selected: selected!, correct: selected === Number(q.correct_index) };
     const newAnswers = [...answers, record];
     if (idx + 1 >= questions.length) {
       clearInterval(intervalRef.current);
@@ -116,7 +116,7 @@ function QuizScreen({ questions, playerName, onFinish }:
     let bg = 'rgba(255,255,255,0.05)';
     let border = '2px solid rgba(255,255,255,0.1)';
     if (confirmed) {
-      if (i === q.correct_index) { bg = 'rgba(34,197,94,0.2)'; border = '2px solid #22c55e'; }
+      if (i === Number(q.correct_index)) { bg = 'rgba(34,197,94,0.2)'; border = '2px solid #22c55e'; }
       else if (i === selected) { bg = 'rgba(239,68,68,0.2)'; border = '2px solid #ef4444'; }
     } else if (i === selected) {
       bg = 'rgba(124,58,237,0.3)'; border = '2px solid #7c3aed';
@@ -154,8 +154,8 @@ function QuizScreen({ questions, playerName, onFinish }:
             {q.options.map((opt, i) => (
               <button key={i} style={optionStyle(i)} onClick={() => !confirmed && setSelected(i)}>
                 <span style={{ marginRight: 10, opacity: 0.6 }}>{'ABCD'[i]}.</span>{opt}
-                {confirmed && i === q.correct_index && <span style={{ float: 'right' }}>✅</span>}
-                {confirmed && i === selected && i !== q.correct_index && <span style={{ float: 'right' }}>❌</span>}
+                {confirmed && i === Number(q.correct_index) && <span style={{ float: 'right' }}>✅</span>}
+                {confirmed && i === selected && i !== Number(q.correct_index) && <span style={{ float: 'right' }}>❌</span>}
               </button>
             ))}
           </div>
@@ -322,7 +322,7 @@ function AdminScreen({ onBack }: { onBack: () => void }) {
             <span style={{ color: '#a78bfa', minWidth: 24 }}>{i + 1}.</span>
             <div style={{ flex: 1 }}>
               <p style={{ color: '#fff', margin: '0 0 4px', fontSize: 14 }}>{q.text}</p>
-              <span style={{ color: '#22c55e', fontSize: 12 }}>✓ {q.options[q.correct_index]}</span>
+              <span style={{ color: '#22c55e', fontSize: 12 }}>✓ {q.options[Number(q.correct_index)]}</span>
               <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginLeft: 12 }}>{q.category} · {q.difficulty}</span>
             </div>
             <button onClick={() => del(q.id)} style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.3)', color: '#f87171', padding: '6px 12px', borderRadius: 8, cursor: 'pointer', fontSize: 13 }}>Xóa</button>
