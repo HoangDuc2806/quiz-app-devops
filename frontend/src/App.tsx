@@ -342,6 +342,7 @@ export default function App() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [lastResult, setLastResult] = useState<{ score: number; total: number; time: number; pct: number } | null>(null);
   const [loadErr, setLoadErr] = useState('');
+  const submittedRef = useRef(false);
 
   const loadData = useCallback(async () => {
     try {
@@ -362,12 +363,15 @@ export default function App() {
   useEffect(() => { loadData(); }, [loadData]);
 
   const handleStart = (name: string) => {
+    submittedRef.current = false;
     if (questions.length === 0) { alert('Chưa có câu hỏi! Vui lòng thêm câu hỏi trong phần Quản lý.'); return; }
     setPlayerName(name);
     setPhase('quiz');
   };
 
   const handleFinish = async (answers: AnswerRecord[], time: number) => {
+    if (submittedRef.current) return;
+    submittedRef.current = true;
     const score = answers.filter(a => a.correct).length;
     const total = answers.length;
     const pct = Math.round((score / total) * 100);
